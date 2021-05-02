@@ -12,7 +12,7 @@ final class ApacheGenerator
 	 */
 	public function generate(): array
 	{
-		$apacheTypes = file_get_contents('httpd-2.2.17/docs/conf/mime.types');
+		$apacheTypes = (string) file_get_contents('httpd-2.2.17/docs/conf/mime.types');
 
 		$extensionToMimeType = [];
 		if (preg_match_all('/^([^#]\S+)\s+([a-z0-9 ]+)$/im', $apacheTypes, $matches)) {
@@ -31,7 +31,7 @@ final class ApacheGenerator
 
 		$return = [];
 		foreach ($extensionToMimeType as $extension => $mimeType) {
-			$return[$extension] = $mimeType;
+			$return[(string) $extension] = (string) $mimeType;
 		}
 
 		return $return;
