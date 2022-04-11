@@ -15,7 +15,7 @@ final class ApacheGenerator
 		$apacheTypes = (string) file_get_contents('httpd-2.2.17/docs/conf/mime.types');
 
 		$extensionToMimeType = [];
-		if (preg_match_all('/^([^#]\S+)\s+([a-z0-9 ]+)$/im', $apacheTypes, $matches)) {
+		if (preg_match_all('/^([^#]\S+)\s+([a-z0-9 ]+)$/im', $apacheTypes, $matches) > 0) {
 			foreach ($matches[2] ?? [] as $index => $extension) {
 				if (!str_contains($extension, ' ')) {
 					$extensionToMimeType[$extension] = $matches[1][$index];
